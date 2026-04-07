@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#47d6ff",
+                        "primary-fixed": "#e4dfff",
+                        "inverse-primary": "#5847d2",
+                        "on-error-container": "#ffdad6",
+                        "inverse-on-surface": "#302f3b",
+                        "surface-container-lowest": "#0d0d18",
+                        "surface-container-high": "#292935",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed": "#2f1500",
+                        "on-primary": "#2900a0",
+                        "tertiary-container": "#ac5d00",
+                        "tertiary": "#ffb77d",
+                        "primary-container": "#6c5ce7",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "on-primary-fixed-variant": "#4029ba",
+                        "secondary-fixed": "#b6ebff",
+                        "background": "#12121d",
+                        "on-tertiary": "#4d2600",
+                        "on-surface-variant": "#c8c4d7",
+                        "surface-container": "#1f1e2a",
+                        "tertiary-fixed": "#ffdcc3",
+                        "surface-container-low": "#1b1a26",
+                        "surface-container-highest": "#343440",
+                        "surface-variant": "#343440",
+                        "on-background": "#e3e0f1",
+                        "primary": "#c6bfff",
+                        "on-primary-container": "#faf6ff",
+                        "on-error": "#690005",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "on-secondary-container": "#00566a",
+                        "surface-tint": "#c6bfff",
+                        "surface-dim": "#12121d",
+                        "on-secondary-fixed": "#001f28",
+                        "error-container": "#93000a",
+                        "on-primary-fixed": "#160066",
+                        "outline": "#928ea0",
+                        "surface-bright": "#383845",
+                        "secondary": "#a5e7ff",
+                        "on-tertiary-container": "#fff5f1",
+                        "outline-variant": "#474554",
+                        "surface": "#12121d",
+                        "primary-fixed-dim": "#c6bfff",
+                        "on-secondary": "#003543",
+                        "inverse-surface": "#e3e0f1",
+                        "secondary-container": "#00d2ff",
+                        "on-surface": "#e3e0f1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glow-primary:hover {
+            box-shadow: 0 0 15px rgba(108, 92, 231, 0.4);
+        }
+        .glass-card {
+            background: rgba(52, 52, 64, 0.6);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(198, 191, 255, 0.2);
+            border-left: 1px solid rgba(198, 191, 255, 0.2);
+        }
+        .luminous-gradient {
+            background: linear-gradient(135deg, #6C5CE7 0%, #00D2FF 100%);
+        }
+        .whatsapp-gradient {
+            background: #25D366;
+        }
+    </style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-white">
+<!-- Sidebar (Shared Component Logic) -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#1b1a26] dark:bg-[#1b1a26] font-['Inter'] antialiased tracking-tight shadow-[40px_0_40px_rgba(198,191,255,0.06)] flex flex-col h-full py-8 px-4 z-50 transition-all duration-300">
+<div class="mb-10 px-4">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl luminous-gradient flex items-center justify-center shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div>
+<h1 class="text-xl font-black text-[#6C5CE7] drop-shadow-[0_0_8px_rgba(108,92,231,0.6)]">BillFlow</h1>
+<p class="text-[10px] uppercase tracking-widest text-on-surface-variant/50">Premium Finance</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#c8c4d7] opacity-70 hover:bg-[#343440] hover:text-[#00D2FF] transition-all duration-300" href="03-dashboard.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#c8c4d7] opacity-70 hover:bg-[#343440] hover:text-[#00D2FF] transition-all duration-300" href="04-customers.html">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#c8c4d7] opacity-70 hover:bg-[#343440] hover:text-[#00D2FF] transition-all duration-300" href="06-bills-list.html">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span>Bills</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#c8c4d7] opacity-70 hover:bg-[#343440] hover:text-[#00D2FF] transition-all duration-300" href="05-create-bill.html">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span>Create Bill</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#c8c4d7] opacity-70 hover:bg-[#343440] hover:text-[#00D2FF] transition-all duration-300" href="08-analysis.html">
+<span class="material-symbols-outlined" data-icon="insights">insights</span>
+<span>Analysis</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-outline-variant/10 pt-6">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#c8c4d7] opacity-70 hover:bg-error-container/20 hover:text-error transition-all duration-300 logout-btn" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+
+<!-- Main Content Area -->
+<main class="ml-64 flex-1 flex flex-col min-h-screen relative overflow-x-hidden">
+<!-- Top Bar -->
+<header class="fixed top-0 right-0 w-[calc(100%-16rem)] h-16 bg-[#1f1e2a]/60 backdrop-blur-xl flex justify-between items-center px-8 z-40 font-['Inter'] font-medium text-sm no-line">
+<nav class="flex items-center gap-2">
+<a href="06-bills-list.html" class="text-on-surface-variant hover:text-white transition-colors">Bills</a>
+<span class="text-on-surface-variant/30">/</span>
+<span class="text-primary font-bold text-current-id tracking-widest">#000</span>
+</nav>
+<div class="flex items-center gap-6">
+<div class="text-right">
+<p class="text-on-surface font-semibold user-name-text">Welcome back, User</p>
+<p class="text-[10px] text-secondary tracking-tight">System Status: Active</p>
+</div>
+<div class="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold">
+    <span class="material-symbols-outlined">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 p-12 min-h-screen">
+<div class="grid grid-cols-12 gap-8 items-start">
+<!-- Left Column: PDF Preview -->
+<div class="col-span-12 lg:col-span-7">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-2xl font-bold tracking-tight text-on-surface">Invoice Preview</h2>
+<div class="flex gap-2 bg-surface-container-high rounded-lg p-1">
+<button class="p-2 hover:bg-surface-container-highest rounded transition-colors">
+<span class="material-symbols-outlined text-sm">zoom_in</span>
+</button>
+<button class="p-2 hover:bg-surface-container-highest rounded transition-colors text-xs font-mono">100%</button>
+<button class="p-2 hover:bg-surface-container-highest rounded transition-colors">
+<span class="material-symbols-outlined text-sm">zoom_out</span>
+</button>
+</div>
+</div>
+<!-- Invoice Sheet -->
+<div class="bg-white rounded-xl shadow-2xl p-12 text-gray-800 min-h-[842px] relative overflow-hidden" data-alt="High quality clean white minimalist invoice document with modern typography and teal accents">
+<div class="flex justify-between items-start mb-16">
+<div>
+<h1 class="text-3xl font-black tracking-tighter text-[#6C5CE7] mb-2 business-name-sheet">BillFlow</h1>
+<p class="text-xs text-gray-500 leading-relaxed max-w-[200px] business-details-sheet">
+    Shah Traders<br/>
+    Cabin Road, Bhayander East<br/>
+    Thane, Mumbai
+</p>
+</div>
+<div class="text-right">
+<h2 class="text-4xl font-light tracking-widest text-gray-300 mb-4">INVOICE</h2>
+<div class="space-y-1">
+<p class="text-xs font-bold text-gray-400 uppercase tracking-tighter">Number</p>
+<p class="text-sm font-bold text-gray-900 sheet-number">#000</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-12 mb-16">
+<div>
+<p class="text-xs font-bold text-gray-400 uppercase tracking-tighter mb-3">Bill To</p>
+<h3 class="text-lg font-bold text-gray-900 mb-1 sheet-customer-name">Rajesh Kumar</h3>
+<p class="text-sm text-gray-600 sheet-customer-location">Kumar Electronics</p>
+</div>
+<div class="text-right">
+<div class="space-y-4">
+<div>
+<p class="text-xs font-bold text-gray-400 uppercase tracking-tighter">Date issued</p>
+<p class="text-sm font-medium text-gray-900 sheet-date">03 Apr 2026</p>
+</div>
+</div>
+</div>
+</div>
+<table class="w-full mb-16">
+<thead>
+<tr class="border-b-2 border-gray-100">
+<th class="text-left py-4 text-xs font-bold text-gray-400 uppercase tracking-tighter">Description</th>
+<th class="text-center py-4 text-xs font-bold text-gray-400 uppercase tracking-tighter">Qty</th>
+<th class="text-right py-4 text-xs font-bold text-gray-400 uppercase tracking-tighter">Price</th>
+<th class="text-right py-4 text-xs font-bold text-gray-400 uppercase tracking-tighter">Total</th>
+</tr>
+</thead>
+<tbody class="text-sm">
+<tr class="border-b border-gray-50">
+<td class="py-6 font-semibold">LED TV 55" Ultra HD</td>
+<td class="py-6 text-center">2</td>
+<td class="py-6 text-right">₹45,000</td>
+<td class="py-6 text-right font-bold">₹90,000</td>
+</tr>
+<tr class="border-b border-gray-50">
+<td class="py-6 font-semibold">Bluetooth Speaker - Aura G2</td>
+<td class="py-6 text-center">5</td>
+<td class="py-6 text-right">₹7,500</td>
+<td class="py-6 text-right font-bold">₹37,500</td>
+</tr>
+<tr class="border-b border-gray-50">
+<td class="py-6 font-semibold">USB-C Cable Pack (3 in 1)</td>
+<td class="py-6 text-center">10</td>
+<td class="py-6 text-right">₹400</td>
+<td class="py-6 text-right font-bold">₹4,000</td>
+</tr>
+<tr class="border-b border-gray-50">
+<td class="py-6 font-semibold">Power Bank 20000mAh</td>
+<td class="py-6 text-center">4</td>
+<td class="py-6 text-right">₹1,000</td>
+<td class="py-6 text-right font-bold">₹4,000</td>
+</tr>
+</tbody>
+</table>
+<div class="flex justify-end">
+<div class="w-64 space-y-3">
+<div class="flex justify-between pt-4 border-t-2 border-gray-100">
+<span class="text-base font-bold">Total</span>
+<span class="text-xl font-black text-[#6C5CE7] sheet-total">₹1,35,500</span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-12 left-12 right-12 flex justify-between items-end">
+<div class="text-[10px] text-gray-400 max-w-[300px]">
+                            This is a computer generated invoice and does not require a physical signature. Returns are accepted within 7 days.
+                        </div>
+<div class="w-24 h-24 opacity-10">
+<img alt="QR Code" data-alt="A stylized minimalist vector QR code with soft geometric patterns for digital payment verification" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB6_mFJHYa4X4wu3nGiFKdqkOHBZgnwaIOGZeqznGID6NoH1C_EH_qNN8fOoJmcE4ly1MMT_5ZxdWmUoyXdRd5WlJbcE_wR52lWiFI14XnWZvLgyKUem-voLsRNBdTv0taGtk83uoQdFcx5mKXy_GJ59Vv1KUSKVh0vzMQpL33c5FCqmbngMlU66-2b0__Jzb9of8kFD00GAmuIe9FqoMMZaeGuZ0hetnzAgHStILyRReNWQSppizst-gXqqjxU2DMSKhfgCLVMb0"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Info & Actions -->
+<div class="col-span-12 lg:col-span-5 space-y-8">
+<!-- Bill Details Card -->
+<section class="glass-card rounded-2xl p-8 shadow-2xl">
+<h3 class="text-xs font-bold uppercase tracking-[0.2em] text-primary mb-6">Bill Information</h3>
+<div class="grid grid-cols-2 gap-y-6">
+<div>
+<p class="text-xs text-on-surface-variant mb-1">Bill Number</p>
+<p class="text-base font-bold text-on-surface">001</p>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant mb-1">Issue Date</p>
+<p class="text-base font-bold text-on-surface">03 Apr 2026</p>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant mb-1">Customer</p>
+<p class="text-base font-bold text-on-surface">Rajesh Kumar</p>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant mb-1">Business</p>
+<p class="text-base font-bold text-on-surface">Kumar Electronics</p>
+</div>
+</div>
+
+</section>
+
+<!-- Actions Card -->
+<section class="space-y-3">
+<button class="w-full py-4 rounded-xl luminous-gradient text-white font-bold text-lg hover:shadow-[0_0_25px_rgba(108,92,231,0.4)] transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined">download</span>
+                        Download PDF
+                    </button>
+<button class="w-full py-4 rounded-xl whatsapp-gradient text-white font-bold text-lg hover:opacity-90 transition-all shadow-lg flex items-center justify-center gap-3">
+<img alt="WhatsApp" class="w-5 h-5 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgPvhdeb0scOyDQR-lWuJLTWE9WVtUv6r-baI7SUxNrTojYo-anIwIbufeHRkRQ5Lz7hvV9XDk8v15BWrqcDHpBAhETmjIuM_XtcPxzSljKGzisqjSAs_3maTSnk7D8fTcIljwaC3dkgBxgDUFNQj-9KcPX12vGcoWvopy3q5lEJCvUQtEcd7XE0bWYBdZ9KFkO3T2JBS53J831k_eS1kJzf5xEWLDf0MdYLjCi23bBqrD1EyF4IZAyiO03ZtE7gdegZx6Frh4-8A"/>
+                        Send via WhatsApp
+                    </button>
+<div class="flex gap-3">
+<button class="flex-1 py-3 rounded-xl bg-surface-container-high text-on-surface font-semibold hover:bg-surface-container-highest transition-all border border-outline-variant/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">edit</span>
+                            Edit Bill
+                        </button>
+<button class="flex-1 py-3 rounded-xl bg-error-container/10 text-error font-semibold hover:bg-error-container/20 transition-all border border-error-container/30 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">delete</span>
+                            Delete Bill
+                        </button>
+</div>
+</section>
+</div>
+</div>
+</main>
+    <script src="js/api.js"></script>
+    <script>
+    // Guard: Redirect if not logged in
+    if (typeof requireAuth === 'function' && !requireAuth()) {
+        throw new Error('Not authenticated - redirecting');
+    }
+
+    let currentBill = null;
+
+    function formatIndian(num) {
+        return new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(num);
+    }
+
+    async function loadBillDetail() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const billId = urlParams.get('id');
+
+        if (!billId) {
+            alert('No bill ID provided');
+            window.location.href = '06-bills-list.html';
+            return;
+        }
+
+        try {
+            const bill = await apiFetch(`/bills/${billId}`);
+            currentBill = bill;
+            
+            // Update Header & Breadcrumbs
+            document.querySelector('.text-current-id').textContent = '#' + bill.billNumber;
+            
+            // Update Info Card
+            const infoValue = document.querySelectorAll('.text-base.font-bold.text-on-surface');
+            infoValue[0].textContent = '#' + bill.billNumber;
+            infoValue[1].textContent = new Date(bill.billDate).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+            infoValue[2].textContent = bill.partner.name;
+            infoValue[3].textContent = bill.partner.location;
+
+            // Update Invoice Sheet
+            document.querySelector('.sheet-number').textContent = '#' + bill.billNumber;
+            document.querySelector('.sheet-customer-name').textContent = bill.partner.name;
+            document.querySelector('.sheet-customer-location').textContent = bill.partner.location;
+            document.querySelector('.sheet-date').textContent = new Date(bill.billDate).toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+
+            // Dynamic Business Branding in Sheet
+            if (window.currentUser) {
+                document.querySelector('.business-name-sheet').textContent = window.currentUser.companyName;
+                document.querySelector('.business-details-sheet').innerHTML = `
+                    ${window.currentUser.phoneNumber || ''}<br/>
+                    Professional Billing Services
+                `;
+            }
+
+            const tbody = document.querySelector('tbody');
+            tbody.innerHTML = '';
+            bill.items.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'border-b border-gray-50';
+                tr.innerHTML = `
+                    <td class="py-6 font-semibold">${item.description}</td>
+                    <td class="py-6 text-center">${item.quantity}</td>
+                    <td class="py-6 text-right">${formatIndian(item.unitPrice)}</td>
+                    <td class="py-6 text-right font-bold">${formatIndian(item.unitPrice * item.quantity)}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.querySelector('.sheet-total').textContent = formatIndian(bill.totalAmount);
+
+            // Button Actions
+            const dlButtons = [document.querySelectorAll('header button')[1], document.querySelector('button.luminous-gradient')];
+            dlButtons.forEach(btn => {
+                if(btn) btn.onclick = () => downloadPdf(bill.id, bill.partner.name, bill.billDate);
+            });
+
+            const waButtons = [document.querySelectorAll('header button')[2], document.querySelector('button.whatsapp-gradient')];
+            waButtons.forEach(btn => {
+                if(btn) btn.onclick = () => shareOnWhatsApp(bill.id, bill.partner.name, bill.totalAmount, bill.billNumber, bill.partner.phoneNumber);
+            });
+
+        } catch (error) {
+            console.error('Failed to load bill details:', error);
+            alert('Error loading bill: ' + error.message);
+        }
+    }
+
+    async function downloadPdf(id, partnerName, date) {
+        try {
+            const result = await apiFetch(`/bills/${id}/pdf`);
+            if (result.isBlob) {
+                const url = window.URL.createObjectURL(result.data);
+                const a = document.createElement('a');
+                a.href = url;
+                const formattedName = partnerName.replace(/\s+/g, '_');
+                const formattedDate = new Date(date).toISOString().split('T')[0];
+                a.download = `${formattedName}_${formattedDate}.pdf`;
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+            }
+        } catch (error) {
+            alert('Failed to download PDF: ' + error.message);
+        }
+    }
+
+    async function shareOnWhatsApp(id, partnerName, amount, billNumber, phoneNumber) {
+        try {
+            // 1. Fetch PDF Blob
+            const response = await apiFetch(`/bills/${id}/pdf`);
+            if (!response.isBlob) throw new Error('Failed to generate PDF');
+            
+            const blob = response.data;
+            const fileName = `Bill_${billNumber}_${partnerName.replace(/\s+/g, '_')}.pdf`;
+            const file = new File([blob], fileName, { type: 'application/pdf' });
+            
+            const businessName = window.currentUser ? window.currentUser.companyName : 'Our Business';
+            const message = `Hello ${partnerName},\n\nYour bill #${billNumber} from ${businessName} for ${formatIndian(amount)} has been generated.\n\nThank you for your business!`;
+            
+            // 2. Try Web Share API (Works on Mobile / Supported Desktop)
+            if (navigator.canShare && navigator.canShare({ files: [file] })) {
+                try {
+                    await navigator.share({
+                        files: [file],
+                        title: `Invoice #${billNumber}`,
+                        text: message
+                    });
+                    return; // Share successful
+                } catch (err) {
+                    if (err.name !== 'AbortError') console.error('Share failed:', err);
+                }
+            }
+            
+            // 3. Fallback (Desktop / WhatsApp Web)
+            // Trigger download automatically
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            
+            alert(`Invoice downloaded! Now opening WhatsApp—please manually attach the downloaded file to your message.`);
+            
+            // Open WhatsApp text chat
+            const encodedMsg = encodeURIComponent(message);
+            const phone = phoneNumber ? phoneNumber.replace(/\D/g, '') : '';
+            window.open(`https://wa.me/${phone}?text=${encodedMsg}`, '_blank');
+            
+        } catch (error) {
+            console.error('WhatsApp share failed:', error);
+            alert('Failed to share via WhatsApp: ' + error.message);
+        }
+    }
+
+    // Logout
+    document.querySelector('.logout-btn').onclick = (e) => {
+        e.preventDefault();
+        if(confirm('Are you sure you want to logout?')) handleLogout();
+    };
+
+    document.addEventListener('DOMContentLoaded', loadBillDetail);
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body></html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>BillFlow | Business Analysis</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                "colors": {
+                  "primary": "#c6bfff",
+                  "primary-container": "#6c5ce7",
+                  "secondary": "#a5e7ff",
+                  "surface": "#12121d",
+                  "surface-container": "#1f1e2a",
+                  "surface-container-high": "#292935",
+                  "on-surface": "#e3e0f1",
+                  "on-surface-variant": "#c8c4d7",
+                  "outline-variant": "#474554"
+                }
+              },
+            },
+          }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #12121d; color: #e3e0f1; }
+        .material-symbols-outlined { vertical-align: middle; }
+        .luminous-gradient { background: linear-gradient(135deg, #6C5CE7 0%, #00D2FF 100%); }
+        .glass-card { background: rgba(31, 30, 42, 0.6); backdrop-filter: blur(20px); border: 1px solid rgba(198, 191, 255, 0.1); }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Sidebar -->
+    <aside class="h-screen w-64 fixed left-0 top-0 bg-[#1b1a26] flex flex-col py-8 px-4 z-50">
+        <div class="mb-10 px-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl luminous-gradient flex items-center justify-center shadow-lg shadow-primary-container/20">
+                    <span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-black text-[#6C5CE7]">BillFlow</h1>
+                    <p class="text-[10px] uppercase tracking-widest text-on-surface-variant/50">Premium Finance</p>
+                </div>
+            </div>
+        </div>
+        <nav class="flex-1 space-y-2">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#c8c4d7] opacity-70 hover:bg-[#343440] hover:text-[#00D2FF] transition-all" href="03-dashboard.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span>Dashboard</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#c8c4d7] opacity-70 hover:bg-[#343440] hover:text-[#00D2FF] transition-all" href="04-customers.html">
+                <span class="material-symbols-outlined">group</span>
+                <span>Customers</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#c8c4d7] opacity-70 hover:bg-[#343440] hover:text-[#00D2FF] transition-all" href="06-bills-list.html">
+                <span class="material-symbols-outlined">receipt_long</span>
+                <span>Bills</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#c8c4d7] opacity-70 hover:bg-[#343440] hover:text-[#00D2FF] transition-all" href="05-create-bill.html">
+                <span class="material-symbols-outlined">add_circle</span>
+                <span>Create Bill</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#6C5CE7] font-bold border-r-2 border-[#6C5CE7] bg-gradient-to-r from-[#6C5CE7]/10 to-transparent transition-all" href="08-analysis.html">
+                <span class="material-symbols-outlined">insights</span>
+                <span>Analysis</span>
+            </a>
+        </nav>
+        <div class="mt-auto pt-6 border-t border-outline-variant/10">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-[#c8c4d7] opacity-70 hover:bg-error-container/20 hover:text-error transition-all logout-btn" href="#">
+                <span class="material-symbols-outlined">logout</span>
+                <span>Logout</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="ml-64 p-8">
+        <header class="mb-10">
+            <h2 class="text-3xl font-black tracking-tight text-white mb-2">Business Analysis</h2>
+            <p class="text-on-surface-variant font-medium">Deep dive into your revenue and customer performance.</p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Timeframe Filter -->
+            <div class="lg:col-span-3 flex justify-between items-center bg-surface-container rounded-2xl p-4 border border-outline-variant/10">
+                <div class="flex gap-2 p-1 bg-surface-container-high rounded-xl">
+                    <button onclick="updateAnalysis('weekly')" id="btn-weekly" class="px-6 py-2 rounded-lg text-sm font-bold transition-all hover:bg-surface-variant">Weekly</button>
+                    <button onclick="updateAnalysis('monthly')" id="btn-monthly" class="px-6 py-2 rounded-lg text-sm font-bold transition-all bg-primary-container text-white shadow-lg">Monthly</button>
+                    <button onclick="updateAnalysis('yearly')" id="btn-yearly" class="px-6 py-2 rounded-lg text-sm font-bold transition-all hover:bg-surface-variant">Yearly</button>
+                </div>
+                <div class="text-xs font-bold text-on-surface-variant/50 uppercase tracking-widest px-4">
+                    Visualizing Business Growth
+                </div>
+            </div>
+
+            <!-- Revenue Trend Chart -->
+            <div class="lg:col-span-2 glass-card rounded-3xl p-8">
+                <h3 class="text-lg font-bold mb-6 flex justify-between items-center">
+                    Revenue Trend Over Time
+                    <span class="text-xs font-medium text-primary bg-primary/10 px-3 py-1 rounded-full">Interactive View</span>
+                </h3>
+                <div class="h-[400px]">
+                    <canvas id="revenueTrendChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Customer Distribution -->
+            <div class="glass-card rounded-3xl p-8">
+                <h3 class="text-lg font-bold mb-6">Revenue Distribution</h3>
+                <div class="h-[300px] flex items-center justify-center">
+                    <canvas id="customerDistChart"></canvas>
+                </div>
+                <div id="customer-list" class="mt-8 space-y-4">
+                    <!-- Dynamic List -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script>
+        // Guard: Redirect if not logged in
+        if (typeof requireAuth === 'function' && !requireAuth()) {
+            throw new Error('Not authenticated - redirecting'); 
+        }
+
+        let trendChart = null;
+        let distChart = null;
+
+        async function updateAnalysis(period) {
+            // Update UI buttons
+            ['weekly', 'monthly', 'yearly'].forEach(p => {
+                const btn = document.getElementById(`btn-${p}`);
+                if (p === period) {
+                    btn.classList.add('bg-primary-container', 'text-white', 'shadow-lg');
+                    btn.classList.remove('hover:bg-surface-variant');
+                } else {
+                    btn.classList.remove('bg-primary-container', 'text-white', 'shadow-lg');
+                    btn.classList.add('hover:bg-surface-variant');
+                }
+            });
+
+            try {
+                const data = await apiFetch(`/stats/revenue-analysis?period=${period}`);
+                renderCharts(data, period);
+            } catch (e) {
+                console.error("Failed to load analysis", e);
+            }
+        }
+
+        function renderCharts(data, period) {
+            // Processing data for Chart.js
+            // Data format: { customer, timeframe, amount }
+            const labels = [...new Set(data.map(d => formatDateLabel(d.timeframe, period)))];
+            const customers = [...new Set(data.map(d => d.customer))];
+            
+            const datasets = customers.map((c, i) => {
+                const colors = ['#6C5CE7', '#00D2FF', '#A5E7FF', '#C6BFFF', '#FFB77D'];
+                return {
+                    label: c,
+                    data: labels.map(l => {
+                        const entry = data.find(d => d.customer === c && formatDateLabel(d.timeframe, period) === l);
+                        return entry ? entry.amount : 0;
+                    }),
+                    borderColor: colors[i % colors.length],
+                    backgroundColor: colors[i % colors.length] + '20',
+                    fill: true,
+                    tension: 0.4
+                };
+            });
+
+            // Trend Chart
+            if (trendChart) trendChart.destroy();
+            const ctxTrend = document.getElementById('revenueTrendChart').getContext('2d');
+            trendChart = new Chart(ctxTrend, {
+                type: 'line',
+                data: { labels, datasets },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { color: '#c8c4d7' } } },
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            grid: { color: 'rgba(255,255,255,0.05)' },
+                            ticks: { color: '#c8c4d7', callback: v => '₹' + v.toLocaleString() }
+                        },
+                        x: { grid: { display: false }, ticks: { color: '#c8c4d7' } }
+                    }
+                }
+            });
+
+            // Distribution Calculation
+            const distData = customers.map(c => {
+                return data.filter(d => d.customer === c).reduce((sum, d) => sum + d.amount, 0);
+            });
+
+            if (distChart) distChart.destroy();
+            const ctxDist = document.getElementById('customerDistChart').getContext('2d');
+            distChart = new Chart(ctxDist, {
+                type: 'doughnut',
+                data: {
+                    labels: customers,
+                    datasets: [{
+                        data: distData,
+                        backgroundColor: ['#6C5CE7', '#00D2FF', '#A5E7FF', '#C6BFFF', '#FFB77D'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: { legend: { display: false } }
+                }
+            });
+
+            // Render List
+            const list = document.getElementById('customer-list');
+            list.innerHTML = '';
+            const total = distData.reduce((a, b) => a + b, 0);
+            customers.forEach((c, i) => {
+                const percent = ((distData[i] / total) * 100).toFixed(1);
+                list.innerHTML += `
+                    <div class="flex items-center justify-between group">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-2 rounded-full" style="background: ${['#6C5CE7', '#00D2FF', '#A5E7FF', '#C6BFFF', '#FFB77D'][i % 5]}"></div>
+                            <span class="text-sm font-bold text-on-surface-variant group-hover:text-white transition-colors">${c}</span>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-sm font-black">₹${distData[i].toLocaleString()}</div>
+                            <div class="text-[10px] text-on-surface-variant/50">${percent}%</div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function formatDateLabel(isoString, period) {
+            const d = new Date(isoString);
+            if (period === 'yearly') return d.getFullYear();
+            if (period === 'weekly') return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
+            return d.toLocaleDateString('en-IN', { month: 'short', year: '2-digit' });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateAnalysis('monthly');
+        });
+
+        document.querySelector('.logout-btn').onclick = (e) => { e.preventDefault(); handleLogout(); };
+    </script>
+</body>
+</html>

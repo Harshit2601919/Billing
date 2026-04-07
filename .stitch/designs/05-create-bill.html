@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BillFlow | Create New Bill</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary-fixed-variant": "#6e3900",
+                "primary-fixed-dim": "#c6bfff",
+                "on-secondary-container": "#00566a",
+                "surface-tint": "#c6bfff",
+                "on-secondary-fixed": "#001f28",
+                "error": "#ffb4ab",
+                "tertiary-fixed": "#ffdcc3",
+                "surface": "#12121d",
+                "on-background": "#e3e0f1",
+                "tertiary-container": "#ac5d00",
+                "inverse-on-surface": "#302f3b",
+                "secondary": "#a5e7ff",
+                "on-surface-variant": "#c8c4d7",
+                "surface-container-low": "#1b1a26",
+                "primary-fixed": "#e4dfff",
+                "error-container": "#93000a",
+                "surface-variant": "#343440",
+                "surface-container-high": "#292935",
+                "primary": "#c6bfff",
+                "on-primary-fixed-variant": "#4029ba",
+                "surface-bright": "#383845",
+                "outline": "#928ea0",
+                "on-tertiary": "#4d2600",
+                "outline-variant": "#474554",
+                "on-surface": "#e3e0f1",
+                "tertiary": "#ffb77d",
+                "surface-container-highest": "#343440",
+                "on-primary": "#2900a0",
+                "secondary-fixed-dim": "#47d6ff",
+                "on-secondary-fixed-variant": "#004e60",
+                "inverse-primary": "#5847d2",
+                "surface-container": "#1f1e2a",
+                "secondary-fixed": "#b6ebff",
+                "surface-dim": "#12121d",
+                "on-primary-fixed": "#160066",
+                "on-primary-container": "#faf6ff",
+                "primary-container": "#6c5ce7",
+                "background": "#12121d",
+                "on-secondary": "#003543",
+                "on-error-container": "#ffdad6",
+                "on-tertiary-container": "#fff5f1",
+                "tertiary-fixed-dim": "#ffb77d",
+                "surface-container-lowest": "#0d0d18",
+                "on-tertiary-fixed": "#2f1500",
+                "on-error": "#690005",
+                "inverse-surface": "#e3e0f1",
+                "secondary-container": "#00d2ff"
+            },
+            "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(31, 30, 42, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(71, 69, 84, 0.15);
+        }
+        .luminous-gradient {
+            background: linear-gradient(135deg, #6C5CE7 0%, #00D2FF 100%);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #6C5CE7 0%, #00D2FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary/30">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-[#1f1e2a] flex flex-col p-6 gap-2 no-border transition-all z-50 hidden md:flex">
+<div class="mb-10 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl luminous-gradient flex items-center justify-center shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<div>
+<h1 class="text-xl font-bold text-white tracking-tight">BillFlow</h1>
+<p class="font-['Inter'] uppercase tracking-widest text-[10px] text-on-surface-variant">Enterprise Ledger</p>
+</div>
+</div>
+<nav class="flex flex-col gap-2 flex-grow">
+<a class="flex items-center gap-3 px-4 py-3 text-[#c8c4d7] hover:bg-[#343440] hover:text-white rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[10px]">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#c8c4d7] hover:bg-[#343440] hover:text-white rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[10px]">Partners</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-[#c8c4d7] hover:bg-[#343440] hover:text-white rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[10px]">Bills</span>
+</a>
+<!-- Active State: Create Bill -->
+<a class="flex items-center gap-3 px-4 py-3 bg-gradient-to-br from-[#6C5CE7] to-[#00D2FF] text-white rounded-lg shadow-[0_0_15px_rgba(108,92,231,0.3)] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-['Inter'] uppercase tracking-widest text-[10px]">Create Bill</span>
+</a>
+
+</nav>
+<div class="mt-auto pt-6 border-t border-outline-variant/10 flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border border-outline-variant/20">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="professional male business portrait in soft corporate lighting with blurred office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9wk4-VUQX5UdAaKJnDMMJqrCiDKTh_RZQlAYhQyOYwBeF_Enm-D1tU0X0_WUfJbbNl56AuqJGAkoABtz9GJShe2mgHJJN-C7EfFOR8nk68ATWsdCMXSLjnw86osR_fi0ADmcecvQRhq68gGTcpIFWjBY_xJ3zT5p-_pLtCXqbaOIVQjf2HUVDKQSW1sQ5FXU1a336qEly2eBz5hUZ3XKxFFqoXIsv_odZyju-oYcrIS3t9dy8__eahE9k7-NLFaboDBWV5REnRFE"/>
+</div>
+<div class="flex-grow overflow-hidden">
+<p class="text-sm font-semibold text-white truncate">Admin Account</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Premium Plan</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="md:ml-64 min-h-screen relative flex flex-col">
+<!-- TopNavBar -->
+<header class="w-full sticky top-0 z-50 bg-[#12121d]/60 backdrop-blur-xl flex items-center justify-between px-8 py-4 shadow-[0_40px_0_0_rgba(198,191,255,0.06)]">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#6c5ce7] md:hidden">menu</span>
+<div class="hidden md:flex flex-col">
+<div class="flex items-center gap-2 text-xs font-medium text-on-surface-variant">
+<span>Bills</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary">Create New</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-xl">search</span>
+<input class="bg-surface-container-low border-none rounded-xl pl-10 pr-4 py-2 text-sm w-64 focus:ring-1 focus:ring-primary text-on-surface" placeholder="Search transactions..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-white transition-colors duration-300" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-white transition-colors duration-300" data-icon="account_circle">account_circle</button>
+</div>
+</div>
+</header>
+<!-- Canvas Content -->
+<div class="p-8 max-w-7xl mx-auto w-full">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+<div>
+<h2 class="text-4xl font-extrabold tracking-tight text-white mb-2">Create New Bill</h2>
+<p class="text-on-surface-variant flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary-container animate-pulse"></span>
+                        Drafting ledger for upcoming Q2 settlement
+                    </p>
+</div>
+<div class="bg-surface-container-high px-4 py-2 rounded-xl border border-outline-variant/10">
+<span class="text-xs uppercase tracking-widest text-on-surface-variant font-medium">Reference ID</span>
+<p class="text-primary-fixed-dim font-mono font-bold">#BILL-00157</p>
+</div>
+</div>
+<!-- Two Column Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-10 gap-8">
+<!-- Left Column (60%) -->
+<div class="lg:col-span-6 space-y-8">
+<!-- Bill Details Card -->
+<section class="glass-card rounded-xl p-8">
+<h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">person_edit</span>
+                            Bill Recipient &amp; Timeline
+                        </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="space-y-2">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-bold px-1">Selected Partner</label>
+<div class="relative">
+<div class="bg-surface-container-low rounded-lg p-4 flex items-center justify-between cursor-pointer border border-outline-variant/10 hover:border-primary/40 transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs">RK</div>
+<div>
+<p class="text-sm font-semibold text-white">Rajesh Kumar</p>
+<p class="text-[10px] text-on-surface-variant">Kumar Electronics</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-bold px-1">Bill Date</label>
+<div class="bg-surface-container-low rounded-lg p-4 flex items-center justify-between border border-outline-variant/10">
+<span class="text-sm font-medium text-white">03 Apr 2026</span>
+<span class="material-symbols-outlined text-on-surface-variant">calendar_today</span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-[10px] uppercase tracking-widest text-on-surface-variant font-bold px-1">Notes (optional)</label>
+<textarea class="w-full bg-surface-container-low border-outline-variant/10 rounded-lg text-sm p-4 focus:ring-1 focus:ring-primary focus:border-primary transition-all text-on-surface" placeholder="Enter specific instructions or delivery details..." rows="3"></textarea>
+</div>
+</section>
+<!-- Bill Items Card -->
+<section class="glass-card rounded-xl overflow-hidden">
+<div class="p-8 pb-0 flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-white flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-xl">inventory_2</span>
+                                Line Items
+                            </h3>
+<button class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary-fixed-dim hover:text-white transition-colors bg-primary/5 px-3 py-1.5 rounded-lg border border-primary/20">
+<span class="material-symbols-outlined text-sm">add</span>
+                                Add Item
+                            </button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse" id="items-table">
+<thead>
+<tr class="bg-surface-container-high/50 text-[10px] uppercase tracking-[0.15em] text-on-surface-variant font-black">
+<th class="px-8 py-4 w-12">#</th>
+<th class="px-4 py-4">Item Name</th>
+<th class="px-4 py-4 text-right">Price (₹)</th>
+<th class="px-4 py-4 text-center">Qty</th>
+<th class="px-4 py-4 text-right">Total (₹)</th>
+<th class="px-8 py-4 text-right"></th>
+</tr>
+</thead>
+<tbody id="items-body" class="divide-y divide-outline-variant/10">
+<!-- Row 1 (default empty row) -->
+<tr class="hover:bg-surface-container-highest/30 transition-colors group item-row">
+<td class="px-8 py-4 text-sm text-on-surface-variant row-number">01</td>
+<td class="px-4 py-4">
+<input type="text" class="w-full bg-surface-container-low border border-outline-variant/10 rounded-lg px-3 py-2 text-sm font-bold text-white placeholder-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all item-name" placeholder="Enter item name..." />
+</td>
+<td class="px-4 py-4">
+<input type="number" class="w-28 bg-surface-container-low border border-outline-variant/10 rounded-lg px-3 py-2 text-sm font-mono text-right text-on-surface placeholder-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all item-price" placeholder="0" min="0" step="0.01" oninput="calculateRow(this)" />
+</td>
+<td class="px-4 py-4">
+<input type="number" class="w-20 bg-surface-container-low border border-outline-variant/10 rounded-lg px-3 py-2 text-sm text-center text-on-surface placeholder-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all item-qty" placeholder="0" min="1" step="1" oninput="calculateRow(this)" />
+</td>
+<td class="px-4 py-4 text-sm font-bold text-right text-secondary-fixed-dim item-total">0</td>
+<td class="px-8 py-4 text-right">
+<button onclick="removeRow(this)" class="material-symbols-outlined text-on-surface-variant/40 hover:text-error transition-colors text-lg">delete</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Add Item Row Button -->
+<div class="border-t border-outline-variant/10">
+<button onclick="addRow()" class="w-full py-4 flex items-center justify-center gap-2 text-primary-fixed-dim hover:text-white hover:bg-surface-container-highest/20 transition-all text-sm font-medium border-2 border-dashed border-outline-variant/20 hover:border-primary/40 rounded-b-xl">
+<span class="material-symbols-outlined text-lg">add_circle_outline</span>
+    Add Another Item
+</button>
+</div>
+<div class="h-14 bg-surface-container-low/30 border-t border-outline-variant/10 flex items-center px-8">
+<span id="entry-count" class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Showing 1 of 1 active entries</span>
+</div>
+</section>
+</div>
+<!-- Right Column (40%) - Sticky Summary -->
+<div class="lg:col-span-4">
+<div class="sticky top-28 space-y-8">
+<!-- Summary Breakdown Card -->
+<div class="glass-card rounded-xl p-8 relative overflow-hidden">
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl"></div>
+<!-- Partner Info Segment -->
+<div class="mb-8 pb-8 border-b border-outline-variant/10">
+<h4 class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-black mb-4">Billing To</h4>
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-xl glass-card flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">storefront</span>
+</div>
+<div>
+<p class="text-lg font-bold text-white leading-tight">Kumar Electronics</p>
+<p class="text-sm text-on-surface-variant">Rajesh Kumar</p>
+<p class="text-xs text-on-surface-variant/70 mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">mail</span> rajesh.k@kumar-elec.com
+                                        </p>
+</div>
+</div>
+</div>
+<!-- Values Segment -->
+<div class="space-y-4 mb-10">
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Subtotal</span>
+<span id="subtotal" class="font-mono text-on-surface">₹ 0.00</span>
+</div>
+
+<div class="flex justify-between items-center text-sm">
+<span class="text-on-surface-variant">Discount</span>
+<input type="number" id="discount-input" class="w-28 bg-surface-container-low border border-outline-variant/10 rounded-lg px-3 py-1.5 text-sm font-mono text-right text-error placeholder-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all" placeholder="0" min="0" value="0" oninput="recalcAll()" />
+</div>
+<div class="pt-6 mt-6 border-t border-outline-variant/10">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant font-black">Grand Total</p>
+<h2 id="grand-total" class="text-4xl font-black text-gradient leading-none mt-2">₹ 0</h2>
+</div>
+<span class="text-[10px] font-bold text-secondary-fixed-dim uppercase tracking-widest mb-1">INR</span>
+</div>
+</div>
+</div>
+<!-- Stacked Actions -->
+<div class="space-y-4">
+<button class="w-full py-4 rounded-xl luminous-gradient text-white font-bold text-sm tracking-wide shadow-lg shadow-primary-container/30 active:scale-95 transition-transform">
+                                    Generate Bill
+                                </button>
+<button class="w-full py-4 rounded-xl bg-transparent border border-primary/40 text-primary-fixed-dim font-bold text-sm tracking-wide hover:bg-primary/5 transition-colors active:scale-95 transition-transform">
+                                    Save as Draft
+                                </button>
+<button class="w-full flex items-center justify-center gap-2 text-secondary-fixed-dim font-bold text-xs uppercase tracking-widest hover:text-white transition-colors py-2">
+<span class="material-symbols-outlined text-sm">picture_as_pdf</span>
+                                    Preview PDF
+                                </button>
+</div>
+</div>
+<!-- Secondary Alert Card -->
+<div class="p-6 rounded-xl bg-secondary-container/5 border-l-4 border-secondary-container flex gap-4">
+<span class="material-symbols-outlined text-secondary-container">verified</span>
+<div>
+<p class="text-xs font-bold text-white uppercase tracking-tight">Compliance Checked</p>
+<p class="text-[11px] text-on-surface-variant mt-1 leading-relaxed">This invoice automatically includes HSN codes and is GST compliant for the FY 2026-27 period.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Spacer for mobile scrolling -->
+<div class="h-20 md:hidden"></div>
+<!-- Mobile BottomNavBar Placeholder -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-high border-t border-outline-variant/10 flex justify-around items-center p-3 z-50">
+<button class="flex flex-col items-center gap-1 text-[#c8c4d7]">
+<span class="material-symbols-outlined">dashboard</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#c8c4d7]">
+<span class="material-symbols-outlined">group</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-[#c8c4d7]">
+<span class="material-symbols-outlined">receipt_long</span>
+</button>
+
+</nav>
+
+<script>
+// Format number to Indian currency style (e.g., 1,35,500)
+function formatIndian(num) {
+    const n = Math.round(num * 100) / 100;
+    const parts = n.toFixed(2).split('.');
+    let intPart = parts[0];
+    const decPart = parts[1];
+    // Indian numbering: last 3 digits, then groups of 2
+    if (intPart.length > 3) {
+        const last3 = intPart.slice(-3);
+        const remaining = intPart.slice(0, -3);
+        const formatted = remaining.replace(/\B(?=(\d{2})+(?!\d))/g, ',');
+        intPart = formatted + ',' + last3;
+    }
+    return intPart;
+}
+
+// Calculate a single row's total when price or qty changes
+function calculateRow(el) {
+    const row = el.closest('tr');
+    const price = parseFloat(row.querySelector('.item-price').value) || 0;
+    const qty = parseInt(row.querySelector('.item-qty').value) || 0;
+    const total = price * qty;
+    row.querySelector('.item-total').textContent = formatIndian(total);
+
+    // Animate the total on change
+    const totalEl = row.querySelector('.item-total');
+    totalEl.style.transform = 'scale(1.15)';
+    totalEl.style.transition = 'transform 0.2s ease';
+    setTimeout(() => { totalEl.style.transform = 'scale(1)'; }, 200);
+
+    recalcAll();
+}
+
+// Recalculate subtotal, tax, and grand total
+function recalcAll() {
+    const rows = document.querySelectorAll('.item-row');
+    let subtotal = 0;
+
+    rows.forEach(row => {
+        const price = parseFloat(row.querySelector('.item-price').value) || 0;
+        const qty = parseInt(row.querySelector('.item-qty').value) || 0;
+        subtotal += price * qty;
+    });
+
+    const discount = parseFloat(document.getElementById('discount-input').value) || 0;
+    const grandTotal = subtotal - discount;
+
+    document.getElementById('subtotal').textContent = '₹ ' + formatIndian(subtotal) + '.00';
+    document.getElementById('grand-total').textContent = '₹ ' + formatIndian(Math.max(0, grandTotal));
+
+    // Animate grand total
+    const gtEl = document.getElementById('grand-total');
+    gtEl.style.transform = 'scale(1.05)';
+    gtEl.style.transition = 'transform 0.25s ease';
+    setTimeout(() => { gtEl.style.transform = 'scale(1)'; }, 250);
+
+    updateEntryCount();
+}
+
+// Add a new empty row
+function addRow() {
+    const tbody = document.getElementById('items-body');
+    const rowCount = tbody.querySelectorAll('.item-row').length + 1;
+    const num = String(rowCount).padStart(2, '0');
+
+    const tr = document.createElement('tr');
+    tr.className = 'hover:bg-surface-container-highest/30 transition-colors group item-row';
+    tr.style.animation = 'fadeSlideIn 0.3s ease forwards';
+    tr.innerHTML = `
+        <td class="px-8 py-4 text-sm text-on-surface-variant row-number">${num}</td>
+        <td class="px-4 py-4">
+            <input type="text" class="w-full bg-surface-container-low border border-outline-variant/10 rounded-lg px-3 py-2 text-sm font-bold text-white placeholder-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all item-name" placeholder="Enter item name..." />
+        </td>
+        <td class="px-4 py-4">
+            <input type="number" class="w-28 bg-surface-container-low border border-outline-variant/10 rounded-lg px-3 py-2 text-sm font-mono text-right text-on-surface placeholder-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all item-price" placeholder="0" min="0" step="0.01" oninput="calculateRow(this)" />
+        </td>
+        <td class="px-4 py-4">
+            <input type="number" class="w-20 bg-surface-container-low border border-outline-variant/10 rounded-lg px-3 py-2 text-sm text-center text-on-surface placeholder-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all item-qty" placeholder="0" min="1" step="1" oninput="calculateRow(this)" />
+        </td>
+        <td class="px-4 py-4 text-sm font-bold text-right text-secondary-fixed-dim item-total">0</td>
+        <td class="px-8 py-4 text-right">
+            <button onclick="removeRow(this)" class="material-symbols-outlined text-on-surface-variant/40 hover:text-error transition-colors text-lg">delete</button>
+        </td>
+    `;
+    tbody.appendChild(tr);
+
+    // Focus the new item name input
+    tr.querySelector('.item-name').focus();
+    updateEntryCount();
+}
+
+// Remove a row
+function removeRow(btn) {
+    const tbody = document.getElementById('items-body');
+    const rows = tbody.querySelectorAll('.item-row');
+
+    // Don't remove the last row
+    if (rows.length <= 1) {
+        // Clear the row instead
+        const row = btn.closest('tr');
+        row.querySelector('.item-name').value = '';
+        row.querySelector('.item-price').value = '';
+        row.querySelector('.item-qty').value = '';
+        row.querySelector('.item-total').textContent = '0';
+        recalcAll();
+        return;
+    }
+
+    const row = btn.closest('tr');
+    row.style.animation = 'fadeSlideOut 0.2s ease forwards';
+    setTimeout(() => {
+        row.remove();
+        renumberRows();
+        recalcAll();
+    }, 200);
+}
+
+// Re-number rows after deletion
+function renumberRows() {
+    const rows = document.querySelectorAll('.item-row');
+    rows.forEach((row, idx) => {
+        row.querySelector('.row-number').textContent = String(idx + 1).padStart(2, '0');
+    });
+}
+
+// Update the entry count text
+function updateEntryCount() {
+    const count = document.querySelectorAll('.item-row').length;
+    document.getElementById('entry-count').textContent =
+        `Showing ${count} of ${count} active entr${count === 1 ? 'y' : 'ies'}`;
+}
+
+// Wire up the header "Add Item" button too
+document.addEventListener('DOMContentLoaded', function() {
+    const headerAddBtn = document.querySelector('button:has(.material-symbols-outlined[data-icon])');
+    // Find the +Add Item button in the header section
+    const addBtns = document.querySelectorAll('button');
+    addBtns.forEach(btn => {
+        if (btn.textContent.trim().includes('Add Item') && !btn.onclick) {
+            btn.addEventListener('click', addRow);
+        }
+    });
+});
+</script>
+
+<style>
+@keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeSlideOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(10px); }
+}
+/* Remove number input arrows for cleaner look */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance: textfield;
+}
+</style>
+
+</main>
+</body></html>

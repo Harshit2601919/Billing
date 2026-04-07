@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign Up | BillFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-background": "#e3e0f1",
+                    "surface-bright": "#383845",
+                    "surface-dim": "#12121d",
+                    "error-container": "#93000a",
+                    "on-primary": "#2900a0",
+                    "inverse-primary": "#5847d2",
+                    "on-secondary-container": "#00566a",
+                    "background": "#12121d",
+                    "surface-container": "#1f1e2a",
+                    "outline": "#928ea0",
+                    "surface-container-high": "#292935",
+                    "tertiary": "#ffb77d",
+                    "on-secondary-fixed": "#001f28",
+                    "on-error-container": "#ffdad6",
+                    "tertiary-fixed-dim": "#ffb77d",
+                    "on-secondary-fixed-variant": "#004e60",
+                    "on-secondary": "#003543",
+                    "on-primary-container": "#faf6ff",
+                    "tertiary-container": "#ac5d00",
+                    "inverse-surface": "#e3e0f1",
+                    "on-tertiary": "#4d2600",
+                    "primary-fixed-dim": "#c6bfff",
+                    "inverse-on-surface": "#302f3b",
+                    "tertiary-fixed": "#ffdcc3",
+                    "on-tertiary-fixed": "#2f1500",
+                    "on-tertiary-container": "#fff5f1",
+                    "on-surface": "#e3e0f1",
+                    "error": "#ffb4ab",
+                    "primary": "#c6bfff",
+                    "primary-fixed": "#e4dfff",
+                    "on-primary-fixed": "#160066",
+                    "primary-container": "#6c5ce7",
+                    "on-surface-variant": "#c8c4d7",
+                    "surface-tint": "#c6bfff",
+                    "secondary-fixed": "#b6ebff",
+                    "secondary-container": "#00d2ff",
+                    "on-primary-fixed-variant": "#4029ba",
+                    "surface-variant": "#343440",
+                    "surface-container-lowest": "#0d0d18",
+                    "secondary": "#a5e7ff",
+                    "surface-container-low": "#1b1a26",
+                    "secondary-fixed-dim": "#47d6ff",
+                    "on-error": "#690005",
+                    "surface-container-highest": "#343440",
+                    "outline-variant": "#474554",
+                    "on-tertiary-fixed-variant": "#6e3900",
+                    "surface": "#12121d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Inter"],
+                    "body": ["Inter"],
+                    "label": ["Inter"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(108, 92, 231, 0.3);
+            border-left: 1px solid rgba(108, 92, 231, 0.3);
+        }
+        .mesh-gradient {
+            background-color: #0F0F1A;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(255,75%,63%,0.15) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(190,100%,50%,0.1) 0, transparent 50%);
+        }
+        .floating-shape {
+            filter: blur(60px);
+            opacity: 0.4;
+        }
+    </style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+</head>
+<body class="bg-surface-dim font-body text-on-surface antialiased overflow-hidden">
+<!-- Auth Layout Wrapper -->
+<main class="min-h-screen flex flex-col md:flex-row mesh-gradient">
+<!-- Left Side: Branded Area -->
+<section class="hidden md:flex w-1/2 flex-col justify-center px-16 relative overflow-hidden">
+<!-- Abstract background elements -->
+<div class="absolute -top-20 -left-20 w-96 h-96 bg-primary-container floating-shape rounded-full"></div>
+<div class="absolute top-1/2 -right-20 w-80 h-80 bg-secondary-container floating-shape rounded-full"></div>
+<div class="relative z-10 space-y-8">
+<!-- Brand Identity -->
+<div class="flex items-center space-x-3">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#6C5CE7] to-[#00D2FF] flex items-center justify-center shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<span class="text-4xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-[#6C5CE7] to-[#00D2FF]">BillFlow</span>
+</div>
+<div class="max-w-md">
+<h1 class="text-5xl font-extrabold tracking-tight text-white leading-tight">
+                        Streamline Your Billing. Amplify Your Business.
+                    </h1>
+<p class="mt-6 text-xl text-on-surface-variant leading-relaxed font-light">
+                        The modern financial ledger designed for high-growth enterprises. Real-time reconciliation, global compliance, and luminous insights in one unified dashboard.
+                    </p>
+</div>
+<!-- Abstract Visual -->
+<div class="mt-12 grid grid-cols-3 gap-4">
+<div class="h-32 rounded-2xl bg-surface-container-highest/40 border-t border-l border-white/10 backdrop-blur-sm p-4">
+<div class="w-8 h-8 rounded-full bg-secondary-container/20 mb-4"></div>
+<div class="h-2 w-16 bg-white/10 rounded"></div>
+<div class="h-2 w-10 bg-white/5 rounded mt-2"></div>
+</div>
+<div class="h-32 rounded-2xl bg-gradient-to-br from-[#6C5CE7] to-[#00D2FF] opacity-80 p-4">
+<span class="material-symbols-outlined text-white text-3xl">trending_up</span>
+</div>
+<div class="h-32 rounded-2xl bg-surface-container-highest/40 border-t border-l border-white/10 backdrop-blur-sm"></div>
+</div>
+</div>
+</section>
+<!-- Right Side: Centered Glassmorphism Card -->
+<section class="flex-1 flex items-center justify-center px-6 py-12 relative z-20">
+<div class="w-full max-w-lg glass-card p-8 md:p-10 rounded-xl shadow-2xl">
+<!-- Tab Toggle -->
+<div class="flex space-x-8 mb-10 border-b border-outline-variant/30">
+<button class="pb-4 text-on-surface-variant hover:text-on-surface transition-colors text-sm font-semibold tracking-wider">
+                        SIGN IN
+                    </button>
+<button class="pb-4 text-primary border-b-2 border-primary text-sm font-semibold tracking-wider">
+                        SIGN UP
+                    </button>
+</div>
+<!-- Form -->
+<form class="space-y-5" id="signup-form">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<!-- Full Name -->
+<div class="relative">
+<label class="text-[10px] uppercase tracking-widest text-on-surface-variant mb-1.5 block font-bold">Full Name</label>
+<div class="relative">
+<input id="signup-fullname" class="w-full bg-surface-container-low border-0 rounded-lg py-3 px-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-primary focus:bg-surface-container transition-all" placeholder="John Doe" type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-secondary-fixed-dim text-lg">check_circle</span>
+</div>
+</div>
+<!-- Company -->
+<div class="relative">
+<label class="text-[10px] uppercase tracking-widest text-on-surface-variant mb-1.5 block font-bold">Company Name</label>
+<input id="signup-company" class="w-full bg-surface-container-low border-0 rounded-lg py-3 px-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-primary focus:bg-surface-container transition-all" placeholder="Acme Inc." type="text"/>
+</div>
+</div>
+<!-- Email -->
+<div class="relative">
+<label class="text-[10px] uppercase tracking-widest text-on-surface-variant mb-1.5 block font-bold">Work Email</label>
+<div class="relative">
+<input id="signup-email" class="w-full bg-surface-container-low border-0 rounded-lg py-3 px-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-primary focus:bg-surface-container transition-all" placeholder="john@company.com" type="email"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline/40 text-lg">mail</span>
+</div>
+</div>
+    <!-- Phone -->
+    <div class="relative">
+        <label class="text-[10px] uppercase tracking-widest text-on-surface-variant mb-1.5 block font-bold">Phone Number</label>
+        <div class="flex gap-2">
+            <input id="signup-phone" class="flex-1 bg-surface-container-low border-0 rounded-lg py-3 px-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-primary focus:bg-surface-container transition-all" placeholder="+91XXXXXXXXXX" type="tel"/>
+            <button id="btn-send-otp" type="button" class="px-4 py-2 bg-surface-container-high rounded-lg text-xs font-bold text-primary hover:bg-surface-bright transition-all whitespace-nowrap">Send SMS OTP</button>
+        </div>
+    </div>
+    <!-- reCAPTCHA Container (Required for Firebase) -->
+    <div id="recaptcha-container"></div>
+    
+    <!-- OTP -->
+    <div id="otp-container" class="relative hidden animate-in fade-in slide-in-from-top-2 duration-300">
+        <label class="text-[10px] uppercase tracking-widest text-on-surface-variant mb-1.5 block font-bold text-secondary">Verification Code (from SMS)</label>
+        <div class="relative">
+            <input id="signup-otp" class="w-full bg-surface-container-low border-0 rounded-lg py-3 px-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-secondary focus:bg-surface-container transition-all" placeholder="Enter 6-digit code" type="text" maxlength="6"/>
+            <button id="btn-verify-otp" type="button" class="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-secondary/10 text-secondary rounded-md text-[10px] font-bold hover:bg-secondary/20 transition-all">Verify Code</button>
+        </div>
+        <div id="otp-verified-badge" class="hidden mt-2 text-[10px] text-green-500 font-bold flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">verified</span> Verified
+        </div>
+    </div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+<!-- Password -->
+<div class="relative">
+<label class="text-[10px] uppercase tracking-widest text-on-surface-variant mb-1.5 block font-bold">Password</label>
+<input id="signup-password" class="w-full bg-surface-container-low border-0 rounded-lg py-3 px-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-primary focus:bg-surface-container transition-all" placeholder="••••••••" type="password"/>
+</div>
+<!-- Confirm Password -->
+<div class="relative">
+<label class="text-[10px] uppercase tracking-widest text-on-surface-variant mb-1.5 block font-bold">Confirm Password</label>
+<input id="signup-confirm-password" class="w-full bg-surface-container-low border-0 rounded-lg py-3 px-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-primary focus:bg-surface-container transition-all" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- CTA -->
+<button class="w-full bg-gradient-to-r from-[#6C5CE7] to-[#00D2FF] text-on-primary-container font-bold py-4 rounded-full shadow-lg shadow-primary-container/25 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center space-x-2 mt-4" type="submit">
+<span>Create Account</span>
+<span class="material-symbols-outlined text-xl">arrow_forward</span>
+</button>
+
+</form>
+<p class="mt-8 text-center text-xs text-on-surface-variant font-medium">
+                    By joining, you agree to our <a class="text-primary hover:underline" href="#">Terms of Service</a> and <a class="text-primary hover:underline" href="#">Privacy Policy</a>.
+                </p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="fixed bottom-0 left-0 w-full z-40 flex justify-center items-center py-6 px-12 pointer-events-none">
+<p class="text-xs font-['Inter'] uppercase tracking-widest text-[#C8C4D7] opacity-60">
+            © 2026 BillFlow. All rights reserved.
+        </p>
+</footer>
+<script src="js/api.js"></script>
+<script type="module">
+    // Firebase Imports MUST be at the top
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // Clear any old session
+    if (typeof clearToken === 'function') clearToken();
+
+    // If already logged in, skip to dashboard
+    if (typeof getToken === 'function' && getToken()) {
+        window.location.href = '03-dashboard.html';
+    }
+
+    // --- Firebase Configuration ---
+    const firebaseConfig = {
+        apiKey: "AIzaSyAtTpat4MFO8JvxnqePLzmpzc3Och9uAI4",
+        authDomain: "billing-1bbab.firebaseapp.com",
+        projectId: "billing-1bbab",
+        storageBucket: "billing-1bbab.appspot.com",
+        messagingSenderId: "27281292048",
+        appId: "1:927281292048:web:4a0f06451f94803b1afb95"
+    };
+
+    // "Sign In" tab → go to login page
+    document.querySelectorAll('.flex.space-x-8 button').forEach(btn => {
+        if (btn.textContent.trim().toUpperCase() === 'SIGN IN') {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.location.href = '01-login-signin.html';
+            });
+        }
+    });
+
+    // Initialize Firebase
+    let app, auth, recaptchaVerifier, confirmationResult, firebaseIdToken;
+    try {
+        app = initializeApp(firebaseConfig);
+        auth = getAuth(app);
+        
+        // Setup reCAPTCHA
+        recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
+            'size': 'invisible',
+            'callback': (response) => {
+                console.log("reCAPTCHA verified");
+            }
+        });
+    } catch (e) {
+        console.error("Firebase Initialization Error", e);
+    }
+
+    // Send OTP via Firebase
+    const sendOtp = async function() {
+        const phoneNumber = document.getElementById('signup-phone').value.trim();
+        const btn = document.getElementById('btn-send-otp');
+
+        if (!phoneNumber || !phoneNumber.startsWith('+')) {
+            alert('Please enter your phone number in international format (e.g., +91XXXXXXXXXX).');
+            return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+
+        try {
+            confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier);
+            alert('Verification code sent to ' + phoneNumber);
+            document.getElementById('otp-container').classList.remove('hidden');
+            btn.textContent = 'Resend SMS';
+            btn.disabled = false;
+        } catch (error) {
+            console.error("SMS Error", error);
+            alert('Error sending SMS: ' + error.message);
+            btn.disabled = false;
+            btn.textContent = 'Send SMS OTP';
+        }
+    };
+
+    // Verify OTP via Firebase
+    const verifyOtp = async function() {
+        const code = document.getElementById('signup-otp').value.trim();
+        const btn = document.getElementById('btn-verify-otp');
+        
+        if (!code || code.length !== 6) {
+            alert('Please enter the 6-digit code sent to your phone.');
+            return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Verifying...';
+
+        try {
+            const result = await confirmationResult.confirm(code);
+            // User successfully verified
+            const user = result.user;
+            firebaseIdToken = await user.getIdToken();
+            
+            // UI Updates
+            document.getElementById('signup-otp').disabled = true;
+            document.getElementById('btn-send-otp').disabled = true;
+            btn.classList.add('hidden');
+            document.getElementById('otp-verified-badge').classList.remove('hidden');
+            alert('Phone number verified successfully!');
+        } catch (error) {
+            console.error("Verification Error", error);
+            alert('Invalid code. Please try again.');
+            btn.disabled = false;
+            btn.textContent = 'Verify Code';
+        }
+    };
+
+    // Attach Event Listeners
+    document.getElementById('btn-send-otp').addEventListener('click', sendOtp);
+    document.getElementById('btn-verify-otp').addEventListener('click', verifyOtp);
+    // --- End Firebase Integration ---
+
+    // Signup form submit
+    document.getElementById('signup-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const fullName    = document.getElementById('signup-fullname').value.trim();
+        const companyName = document.getElementById('signup-company').value.trim();
+        const phoneNumber = document.getElementById('signup-phone').value.trim();
+        const email       = document.getElementById('signup-email').value.trim();
+        const password    = document.getElementById('signup-password').value;
+        const confirmPass = document.getElementById('signup-confirm-password').value;
+        const submitBtn   = e.target.querySelector('button[type="submit"]');
+
+        if (!fullName || !email || !password || !phoneNumber || !firebaseIdToken) {
+            alert('Please fill in all required fields and verify your phone number via SMS first.');
+            return;
+        }
+
+        if (password !== confirmPass) {
+            alert('Passwords do not match!');
+            return;
+        }
+
+        if (password.length < 6) {
+            alert('Password must be at least 6 characters long.');
+            return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.querySelector('span:first-child').textContent = 'Creating Account...';
+
+        try {
+            await authFetch('/auth/signup', {
+                username: fullName,
+                email: email,
+                password: password,
+                companyName: companyName,
+                phoneNumber: phoneNumber,
+                idToken: firebaseIdToken
+            });
+
+            alert('Registration successful! Please log in.');
+            window.location.href = '01-login-signin.html';
+        } catch (error) {
+            alert('Signup failed: ' + error.message);
+            submitBtn.disabled = false;
+            submitBtn.querySelector('span:first-child').textContent = 'Create Account';
+        }
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body></html>

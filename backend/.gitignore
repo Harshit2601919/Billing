@@ -1,0 +1,26 @@
+# Maven build artifacts
+target/
+*.jar
+*.war
+*.ear
+
+# IDE settings
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Sensitive local config
+service-account.json
+.env
+
+# Maven wrapper
+.mvn/
+mvnw
+mvnw.cmd

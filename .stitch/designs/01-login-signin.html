@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sign In | BillFlow</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#e3e0f1",
+                        "surface-bright": "#383845",
+                        "surface-dim": "#12121d",
+                        "error-container": "#93000a",
+                        "on-primary": "#2900a0",
+                        "inverse-primary": "#5847d2",
+                        "on-secondary-container": "#00566a",
+                        "background": "#12121d",
+                        "surface-container": "#1f1e2a",
+                        "outline": "#928ea0",
+                        "surface-container-high": "#292935",
+                        "tertiary": "#ffb77d",
+                        "on-secondary-fixed": "#001f28",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-fixed-dim": "#ffb77d",
+                        "on-secondary-fixed-variant": "#004e60",
+                        "on-secondary": "#003543",
+                        "on-primary-container": "#faf6ff",
+                        "tertiary-container": "#ac5d00",
+                        "inverse-surface": "#e3e0f1",
+                        "on-tertiary": "#4d2600",
+                        "primary-fixed-dim": "#c6bfff",
+                        "inverse-on-surface": "#302f3b",
+                        "tertiary-fixed": "#ffdcc3",
+                        "on-tertiary-fixed": "#2f1500",
+                        "on-tertiary-container": "#fff5f1",
+                        "on-surface": "#e3e0f1",
+                        "error": "#ffb4ab",
+                        "primary": "#c6bfff",
+                        "primary-fixed": "#e4dfff",
+                        "on-primary-fixed": "#160066",
+                        "primary-container": "#6c5ce7",
+                        "on-surface-variant": "#c8c4d7",
+                        "surface-tint": "#c6bfff",
+                        "secondary-fixed": "#b6ebff",
+                        "secondary-container": "#00d2ff",
+                        "on-primary-fixed-variant": "#4029ba",
+                        "surface-variant": "#343440",
+                        "surface-container-lowest": "#0d0d18",
+                        "secondary": "#a5e7ff",
+                        "surface-container-low": "#1b1a26",
+                        "secondary-fixed-dim": "#47d6ff",
+                        "on-error": "#690005",
+                        "surface-container-highest": "#343440",
+                        "outline-variant": "#474554",
+                        "on-tertiary-fixed-variant": "#6e3900",
+                        "surface": "#12121d"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Inter"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #0F0F1A; }
+        .mesh-gradient {
+            background: radial-gradient(at 0% 0%, rgba(108, 92, 231, 0.15) 0px, transparent 50%),
+                        radial-gradient(at 100% 100%, rgba(0, 210, 255, 0.15) 0px, transparent 50%),
+                        radial-gradient(at 50% 50%, rgba(108, 92, 231, 0.05) 0px, transparent 80%);
+        }
+        .glass-card {
+            background: rgba(26, 26, 46, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            box-shadow: 0 0 40px 0 rgba(108, 92, 231, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col mesh-gradient overflow-hidden">
+<!-- Main Content Area -->
+<main class="flex-grow flex items-center justify-center lg:justify-start">
+<div class="flex w-full h-full">
+<!-- Left Side: Branded Area (Desktop only) -->
+<section class="hidden lg:flex lg:w-1/2 flex-col justify-center px-20 relative overflow-hidden">
+<!-- Abstract Geometric Shapes -->
+<div class="absolute top-1/4 -left-10 w-64 h-64 bg-gradient-to-br from-[#6C5CE7] to-[#00D2FF] rounded-full blur-[80px] opacity-20"></div>
+<div class="absolute bottom-1/4 right-0 w-80 h-80 bg-gradient-to-tr from-[#00D2FF] to-[#6C5CE7] rounded-full blur-[100px] opacity-20"></div>
+<div class="relative z-10">
+<div class="mb-8 flex items-center space-x-3">
+<div class="w-12 h-12 rounded-xl bg-gradient-to-r from-[#6C5CE7] to-[#00D2FF] flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-3xl" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<h1 class="text-4xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-[#6C5CE7] to-[#00D2FF]">
+                            BillFlow
+                        </h1>
+</div>
+<h2 class="text-5xl font-extrabold text-on-surface leading-tight tracking-tight mb-6">
+                        Streamline Your Billing.<br/>
+<span class="text-secondary">Amplify Your Business.</span>
+</h2>
+<p class="text-xl text-on-surface-variant max-w-lg mb-12 leading-relaxed">
+                        The modern financial operating system for global enterprises. Manage invoices, automate payments, and gain deep insights with one luminous interface.
+                    </p>
+<!-- Floating decorative image/element -->
+<div class="relative w-full aspect-video rounded-2xl overflow-hidden border border-outline-variant/20 shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="abstract 3d glass architectural shapes floating in a dark violet and cyan void with soft atmospheric lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcPZuHWK7_Q0WGYCJqT_H1NSW2ufDy-lExtfATJ03iHRl2qvAM_xvyu2JfBwDX3YVkH4eYF3LZW6YOTtlEWJRQ2TnOlSQtEUtk4YijG_c3rOFbSAxmNXLD1fXpCo8LYZT7aCqNmhikQTNPzCOS0nY24VLt5XF3KI61X8qFdTxKdlmP7VfNghLHuhk-PrVM2HLunK-wPnTa-erDHqCr84SsZIecYj-RcKvTVzkt4Rp8rmSv9B3AIfT_wfVl4ngMlxDU8srC7eQVaCg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim/80 to-transparent"></div>
+</div>
+</div>
+</section>
+<!-- Right Side: Interaction Hub -->
+<section class="w-full lg:w-1/2 flex items-center justify-center p-6 md:p-12 relative">
+<!-- Mobile Branding -->
+<div class="lg:hidden absolute top-12 left-1/2 -translate-x-1/2 flex items-center space-x-2">
+<div class="w-8 h-8 rounded-lg bg-gradient-to-r from-[#6C5CE7] to-[#00D2FF] flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+</div>
+<span class="text-xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-[#6C5CE7] to-[#00D2FF]">BillFlow</span>
+</div>
+<!-- Glassmorphism Card -->
+<div class="glass-card w-full max-w-md p-8 md:p-10 rounded-[16px] animate-in fade-in zoom-in duration-500">
+<!-- Toggle Tabs -->
+<div class="flex space-x-8 mb-10 border-b border-outline-variant/10">
+<button class="pb-4 text-sm font-bold tracking-widest uppercase border-b-2 border-[#6C5CE7] text-on-surface">
+                            Sign In
+                        </button>
+<button class="pb-4 text-sm font-bold tracking-widest uppercase text-on-surface-variant hover:text-on-surface transition-colors">
+                            Sign Up
+                        </button>
+</div>
+<!-- Sign In Form -->
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="text-[10px] font-bold tracking-[0.1em] text-on-surface-variant uppercase ml-1">Email Address</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-12 pr-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-primary transition-all" placeholder="name@company.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-[10px] font-bold tracking-[0.1em] text-on-surface-variant uppercase ml-1">Password</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">lock</span>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-4 pl-12 pr-12 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-primary transition-all" placeholder="••••••••" type="password"/>
+<button class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface transition-colors" type="button">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center justify-between py-2">
+<label class="flex items-center space-x-3 cursor-pointer group">
+<input class="w-5 h-5 rounded border-outline-variant bg-surface-container text-primary focus:ring-offset-surface-dim focus:ring-primary" type="checkbox"/>
+<span class="text-sm text-on-surface-variant group-hover:text-on-surface transition-colors">Remember me</span>
+</label>
+<a class="text-sm font-semibold text-[#00D2FF] hover:underline transition-all" href="#">Forgot password?</a>
+</div>
+<button class="w-full py-4 rounded-full bg-gradient-to-r from-[#6C5CE7] to-[#00D2FF] text-white font-bold text-sm tracking-widest uppercase hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-[#6C5CE7]/20" type="submit">
+                            Sign In
+                        </button>
+</form>
+<!-- Divider -->
+<div class="relative my-10">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-outline-variant/10"></div>
+</div>
+<div class="relative flex justify-center">
+<span class="bg-[#1A1A2E] px-4 text-[10px] font-bold tracking-widest text-outline/60 uppercase">or continue with</span>
+</div>
+</div>
+<!-- Social Logins -->
+<div class="grid grid-cols-2 gap-4">
+<button class="flex items-center justify-center space-x-2 py-3 rounded-xl bg-surface-container-high border border-outline-variant/20 hover:border-primary/40 transition-all">
+<img class="w-5 h-5" data-alt="google logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMDMIhX8U-OknH9Gqosy9SudFRR9Jb7coP2iHEFp3EORxKu8bGRn4LRsYKI3lKY_l0DV0bZmsuMSBqxthYX2x7fnzOKll1fyM-VzUcYQXAoUOK-3o1EVQpFT4hOzKbhCa4Kg9FOob4i40HO1vmqKrt_GGgJ7ZfPbY1Mqtc2uBUGd6cNzxRfB6iHB1odBV6MkovU_Pw-jxtzXF-0X4aFsKsx_PaVSqqQ87CZUbT-2oCZ_-cnKArUNMoVPMMxm3704bbQrYa3C7jVmc"/>
+<span class="text-sm font-semibold text-on-surface">Google</span>
+</button>
+<button class="flex items-center justify-center space-x-2 py-3 rounded-xl bg-surface-container-high border border-outline-variant/20 hover:border-primary/40 transition-all">
+<svg class="w-5 h-5 fill-on-surface" viewbox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg>
+<span class="text-sm font-semibold text-on-surface">GitHub</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="fixed bottom-0 left-0 w-full z-40 flex justify-center items-center py-8 px-12 pointer-events-none">
+<div class="flex flex-col items-center space-y-4 pointer-events-auto">
+<div class="flex space-x-8">
+<a class="text-[10px] font-bold uppercase tracking-widest text-[#C8C4D7] hover:text-[#6C5CE7] transition-all" href="#">Privacy Policy</a>
+<a class="text-[10px] font-bold uppercase tracking-widest text-[#C8C4D7] hover:text-[#6C5CE7] transition-all" href="#">Terms of Service</a>
+<a class="text-[10px] font-bold uppercase tracking-widest text-[#C8C4D7] hover:text-[#6C5CE7] transition-all" href="#">Contact Support</a>
+</div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-[#A0A0C0] opacity-60">
+                © 2026 BillFlow. All rights reserved.
+            </p>
+</div>
+</footer>
+</body></html>
