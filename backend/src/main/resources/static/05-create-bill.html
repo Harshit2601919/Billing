@@ -100,10 +100,10 @@
 </head>
 <body class="bg-surface text-on-surface font-body selection:bg-primary/30">
 <!-- Mobile Overlay Backdrop -->
-<div id="sidebar-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity duration-300" onclick="toggleSidebar()"></div>
+<div id="sidebar-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden lg:hidden transition-opacity duration-300" onclick="toggleSidebar()"></div>
 
 <!-- Sidebar (Shared Component Logic) -->
-<aside id="main-sidebar" class="h-screen w-64 fixed left-0 top-0 bg-[#1b1a26] transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out font-['Inter'] antialiased tracking-tight shadow-[40px_0_40px_rgba(198,191,255,0.06)] flex flex-col py-8 px-4 z-50">
+<aside id="main-sidebar" class="h-screen w-64 fixed left-0 top-0 bg-[#1b1a26] transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out font-['Inter'] antialiased tracking-tight shadow-[40px_0_40px_rgba(198,191,255,0.06)] flex flex-col py-8 px-4 z-[70]">
 <div class="mb-10 px-4">
 <div class="flex items-center justify-between lg:justify-start gap-3">
     <div class="flex items-center gap-3">
@@ -154,7 +154,7 @@
 <!-- Main Content Area -->
 <main class="ml-0 lg:ml-64 flex-1 flex flex-col min-h-screen relative overflow-x-hidden">
 <!-- Top Bar -->
-<header class="fixed top-0 right-0 w-full lg:w-[calc(100%-16rem)] h-16 bg-[#1f1e2a]/60 backdrop-blur-xl flex justify-between items-center px-4 md:px-8 z-40 font-['Inter'] font-medium text-sm no-line border-b border-outline-variant/10">
+<header class="fixed top-0 right-0 w-full lg:w-[calc(100%-16rem)] h-16 bg-[#1f1e2a]/80 backdrop-blur-xl flex justify-between items-center px-4 md:px-8 z-50 font-['Inter'] font-medium text-sm no-line border-b border-outline-variant/10">
 <div class="flex items-center gap-4">
     <button onclick="toggleSidebar()" class="lg:hidden p-2 text-on-surface-variant hover:text-white transition-colors">
         <span class="material-symbols-outlined">menu</span>
@@ -243,7 +243,7 @@
 <thead>
 <tr class="bg-surface-container-high/50 text-[10px] uppercase tracking-[0.15em] text-on-surface-variant font-black">
 <th class="px-8 py-4 w-12">#</th>
-<th class="px-4 py-4">Item Name</th>
+<th class="px-4 py-4 min-w-[220px]">Item Name</th>
 <th class="px-4 py-4 text-right">Price (₹)</th>
 <th class="px-4 py-4 text-center">Qty</th>
 <th class="px-4 py-4 text-right">Total (₹)</th>
@@ -254,14 +254,14 @@
 <!-- Row 1 (default empty row) -->
 <tr class="hover:bg-surface-container-highest/30 transition-colors group item-row">
 <td class="px-8 py-4 text-sm text-on-surface-variant row-number">01</td>
-<td class="px-4 py-4">
-<input type="text" class="w-full bg-surface-container-low border border-outline-variant/10 rounded-lg px-3 py-2 text-sm font-bold text-white placeholder-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all item-name" placeholder="Enter item name..." />
+<td class="px-4 py-4 min-w-[220px]">
+    <input type="text" class="w-full bg-surface-container-low border border-outline-variant/10 rounded-lg px-3 py-2 text-sm font-bold text-white placeholder-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all item-name" placeholder="Enter item name..." required />
 </td>
 <td class="px-4 py-4">
-<input type="number" class="w-28 bg-surface-container-low border border-outline-variant/10 rounded-lg px-3 py-2 text-sm font-mono text-right text-on-surface placeholder-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all item-price" placeholder="0" min="0" step="0.01" oninput="calculateRow(this)" />
+<input type="number" class="w-28 bg-surface-container-low border border-outline-variant/10 rounded-lg px-3 py-2 text-sm font-mono text-right text-on-surface placeholder-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all item-price" placeholder="0" min="0" step="1" oninput="calculateRow(this)" required />
 </td>
 <td class="px-4 py-4">
-<input type="number" class="w-20 bg-surface-container-low border border-outline-variant/10 rounded-lg px-3 py-2 text-sm text-center text-on-surface placeholder-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all item-qty" placeholder="0" min="1" step="1" oninput="calculateRow(this)" />
+<input type="number" class="w-20 bg-surface-container-low border border-outline-variant/10 rounded-lg px-3 py-2 text-sm text-center text-on-surface placeholder-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all item-qty" placeholder="0" min="1" step="1" oninput="calculateRow(this)" required />
 </td>
 <td class="px-4 py-4 text-sm font-bold text-right text-secondary-fixed-dim item-total">0</td>
 <td class="px-8 py-4 text-right">
@@ -422,7 +422,7 @@ function addRow() {
     tr.className = 'hover:bg-surface-container-highest/30 transition-colors group item-row';
     tr.innerHTML = `
         <td class="px-8 py-4 text-sm text-on-surface-variant font-bold row-number">${num}</td>
-        <td class="px-4 py-4">
+        <td class="px-4 py-4 min-w-[220px]">
             <input type="text" class="w-full bg-surface-container-low border border-outline-variant/10 rounded-lg px-3 py-2 text-sm font-bold text-white placeholder-on-surface-variant/50 focus:ring-1 focus:ring-primary focus:border-primary transition-all item-name" placeholder="Enter item name..." required />
         </td>
         <td class="px-4 py-4">

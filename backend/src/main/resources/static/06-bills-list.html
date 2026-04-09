@@ -88,10 +88,10 @@
 </head>
 <body class="text-on-surface bg-surface-dim selection:bg-primary-container selection:text-white">
 <!-- Mobile Overlay Backdrop -->
-<div id="sidebar-overlay" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity duration-300" onclick="toggleSidebar()"></div>
+<div id="sidebar-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden lg:hidden transition-opacity duration-300" onclick="toggleSidebar()"></div>
 
 <!-- Sidebar (Shared Component Logic) -->
-<aside id="main-sidebar" class="h-screen w-64 fixed left-0 top-0 bg-[#1b1a26] transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out font-['Inter'] antialiased tracking-tight shadow-[40px_0_40px_rgba(198,191,255,0.06)] flex flex-col py-8 px-4 z-50">
+<aside id="main-sidebar" class="h-screen w-64 fixed left-0 top-0 bg-[#1b1a26] transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out font-['Inter'] antialiased tracking-tight shadow-[40px_0_40px_rgba(198,191,255,0.06)] flex flex-col py-8 px-4 z-[70]">
 <div class="mb-10 px-4">
 <div class="flex items-center justify-between lg:justify-start gap-3">
     <div class="flex items-center gap-3">
@@ -142,7 +142,7 @@
 <!-- Main Content Area -->
 <main class="ml-0 lg:ml-64 flex-1 flex flex-col min-h-screen relative overflow-x-hidden">
 <!-- Top Bar -->
-<header class="fixed top-0 right-0 w-full lg:w-[calc(100%-16rem)] h-16 bg-[#1f1e2a]/60 backdrop-blur-xl flex justify-between items-center px-4 md:px-8 z-40 font-['Inter'] font-medium text-sm no-line border-b border-outline-variant/10">
+<header class="fixed top-0 right-0 w-full lg:w-[calc(100%-16rem)] h-16 bg-[#1f1e2a]/80 backdrop-blur-xl flex justify-between items-center px-4 md:px-8 z-50 font-['Inter'] font-medium text-sm no-line border-b border-outline-variant/10">
 <div class="flex items-center gap-4">
     <button onclick="toggleSidebar()" class="lg:hidden p-2 text-on-surface-variant hover:text-white transition-colors">
         <span class="material-symbols-outlined">menu</span>
