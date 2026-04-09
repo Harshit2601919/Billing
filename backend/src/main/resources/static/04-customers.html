@@ -143,7 +143,7 @@
 <main class="ml-0 lg:ml-64 flex-1 flex flex-col min-h-screen relative overflow-x-hidden">
 <!-- Top Bar -->
 <header class="fixed top-0 right-0 w-full lg:w-[calc(100%-16rem)] h-16 bg-[#1f1e2a]/80 backdrop-blur-xl flex justify-between items-center px-4 md:px-8 z-50 font-['Inter'] font-medium text-sm no-line border-b border-outline-variant/10">
-<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 md:gap-4 flex-1">
     <button onclick="toggleSidebar()" class="lg:hidden p-2 text-on-surface-variant hover:text-white transition-colors">
         <span class="material-symbols-outlined">menu</span>
     </button>
@@ -152,15 +152,14 @@
         <input id="partner-search-header" class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-on-surface-variant/30 text-on-surface" placeholder="Search partners..." type="text"/>
     </div>
 </div>
-<div class="flex items-center gap-6">
-<div class="text-right">
+<div class="flex items-center gap-3 md:gap-6 ml-4">
+<div class="text-right hidden sm:block">
 <p class="text-on-surface font-semibold user-name-text">Welcome back, User</p>
 <p class="text-[10px] text-secondary tracking-tight">System Status: Active</p>
 </div>
-<button class="luminous-gradient text-white px-6 py-2.5 rounded-full font-bold text-sm shadow-[0_0_20px_rgba(108,92,231,0.3)] hover:scale-105 active:scale-95 transition-all add-partner-trigger">
+<button class="luminous-gradient text-white px-4 md:px-6 py-2 md:py-2.5 rounded-full font-bold text-[12px] md:text-sm shadow-[0_0_20px_rgba(108,92,231,0.3)] hover:scale-105 active:scale-95 transition-all add-partner-trigger">
 Add Customer
 </button>
-</div>
 </div>
 </header>
 <!-- Content Area -->
@@ -298,6 +297,17 @@ Add Customer
 
     function renderPartners(partners) {
         grid.innerHTML = '';
+        if (partners.length === 0) {
+            grid.innerHTML = `
+                <div class="col-span-full py-20 text-center">
+                    <div class="w-20 h-20 bg-surface-container-low rounded-full flex items-center justify-center mx-auto mb-4 border border-outline-variant/10">
+                        <span class="material-symbols-outlined text-4xl text-on-surface-variant/30">search_off</span>
+                    </div>
+                    <h3 class="text-on-surface-variant font-medium">No customers found matching your search.</h3>
+                </div>
+            `;
+            return;
+        }
         partners.forEach(partner => {
             const card = document.createElement('div');
             card.className = 'bg-surface-container-highest p-6 rounded-xl hover:shadow-[0_15px_35px_rgba(108,92,231,0.2)] hover:-translate-y-1 transition-all duration-300 relative group border border-outline-variant/5 cursor-pointer';
@@ -358,15 +368,16 @@ Add Customer
     // Search Logic
     searchInputs.forEach(input => {
         if(input) {
-            input.oninput = (e) => {
-                const term = e.target.value.toLowerCase();
-                const filtered = allPartners.filter(p => 
-                    p.name.toLowerCase().includes(term) || 
-                    (p.location && p.location.toLowerCase().includes(term)) ||
-                    (p.businessName && p.businessName.toLowerCase().includes(term))
-                );
+            input.addEventListener('input', (e) => {
+                const term = e.target.value.toLowerCase().trim();
+                const filtered = allPartners.filter(p => {
+                    const name = (p.name || '').toLowerCase();
+                    const loc = (p.location || '').toLowerCase();
+                    const bus = (p.businessName || '').toLowerCase();
+                    return name.includes(term) || loc.includes(term) || bus.includes(term);
+                });
                 renderPartners(filtered);
-            };
+            });
         }
     });
 
