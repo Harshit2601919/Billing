@@ -176,25 +176,10 @@
     <!-- Phone -->
     <div class="relative">
         <label class="text-[10px] uppercase tracking-widest text-on-surface-variant mb-1.5 block font-bold">Phone Number</label>
-        <div class="flex gap-2">
-            <input id="signup-phone" class="flex-1 bg-surface-container-low border-0 rounded-lg py-3 px-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-primary focus:bg-surface-container transition-all" placeholder="+91XXXXXXXXXX" type="tel"/>
-            <button id="btn-send-otp" type="button" class="px-4 py-2 bg-surface-container-high rounded-lg text-xs font-bold text-primary hover:bg-surface-bright transition-all whitespace-nowrap">Send SMS OTP</button>
-        </div>
+        <input id="signup-phone" class="w-full bg-surface-container-low border-0 rounded-lg py-3 px-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-primary focus:bg-surface-container transition-all" placeholder="+91XXXXXXXXXX" type="tel"/>
     </div>
-    <!-- reCAPTCHA Container (Required for Firebase) -->
-    <div id="recaptcha-container"></div>
     
-    <!-- OTP -->
-    <div id="otp-container" class="relative hidden animate-in fade-in slide-in-from-top-2 duration-300">
-        <label class="text-[10px] uppercase tracking-widest text-on-surface-variant mb-1.5 block font-bold text-secondary">Verification Code (from SMS)</label>
-        <div class="relative">
-            <input id="signup-otp" class="w-full bg-surface-container-low border-0 rounded-lg py-3 px-4 text-on-surface placeholder:text-outline/50 focus:ring-1 focus:ring-secondary focus:bg-surface-container transition-all" placeholder="Enter 6-digit code" type="text" maxlength="6"/>
-            <button id="btn-verify-otp" type="button" class="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-secondary/10 text-secondary rounded-md text-[10px] font-bold hover:bg-secondary/20 transition-all">Verify Code</button>
-        </div>
-        <div id="otp-verified-badge" class="hidden mt-2 text-[10px] text-green-500 font-bold flex items-center gap-1">
-            <span class="material-symbols-outlined text-sm">verified</span> Verified
-        </div>
-    </div>
+
 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 <!-- Password -->
 <div class="relative">
@@ -230,25 +215,9 @@
 <script type="module">
     // Firebase Imports MUST be at the top
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, RecaptchaVerifier, signInWithPhoneNumber } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
     // Clear any old session
     if (typeof clearToken === 'function') clearToken();
-
-    // If already logged in, skip to dashboard
-    if (typeof getToken === 'function' && getToken()) {
-        window.location.href = '03-dashboard.html';
-    }
-
-    // --- Firebase Configuration ---
-    const firebaseConfig = {
-        apiKey: "AIzaSyAtTpat4MFO8JvxnqePLzmpzc3Och9uAI4",
-        authDomain: "billing-1bbab.firebaseapp.com",
-        projectId: "billing-1bbab",
-        storageBucket: "billing-1bbab.appspot.com",
-        messagingSenderId: "27281292048",
-        appId: "1:927281292048:web:4a0f06451f94803b1afb95"
-    };
 
     // "Sign In" tab → go to login page
     document.querySelectorAll('.flex.space-x-8 button').forEach(btn => {
@@ -259,88 +228,6 @@
             });
         }
     });
-
-    // Initialize Firebase
-    let app, auth, recaptchaVerifier, confirmationResult, firebaseIdToken;
-    try {
-        app = initializeApp(firebaseConfig);
-        auth = getAuth(app);
-        
-        // Setup reCAPTCHA
-        recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', {
-            'size': 'invisible',
-            'callback': (response) => {
-                console.log("reCAPTCHA verified");
-            }
-        });
-    } catch (e) {
-        console.error("Firebase Initialization Error", e);
-    }
-
-    // Send OTP via Firebase
-    const sendOtp = async function() {
-        const phoneNumber = document.getElementById('signup-phone').value.trim();
-        const btn = document.getElementById('btn-send-otp');
-
-        if (!phoneNumber || !phoneNumber.startsWith('+')) {
-            alert('Please enter your phone number in international format (e.g., +91XXXXXXXXXX).');
-            return;
-        }
-
-        btn.disabled = true;
-        btn.textContent = 'Sending...';
-
-        try {
-            confirmationResult = await signInWithPhoneNumber(auth, phoneNumber, recaptchaVerifier);
-            alert('Verification code sent to ' + phoneNumber);
-            document.getElementById('otp-container').classList.remove('hidden');
-            btn.textContent = 'Resend SMS';
-            btn.disabled = false;
-        } catch (error) {
-            console.error("SMS Error", error);
-            alert('Error sending SMS: ' + error.message);
-            btn.disabled = false;
-            btn.textContent = 'Send SMS OTP';
-        }
-    };
-
-    // Verify OTP via Firebase
-    const verifyOtp = async function() {
-        const code = document.getElementById('signup-otp').value.trim();
-        const btn = document.getElementById('btn-verify-otp');
-        
-        if (!code || code.length !== 6) {
-            alert('Please enter the 6-digit code sent to your phone.');
-            return;
-        }
-
-        btn.disabled = true;
-        btn.textContent = 'Verifying...';
-
-        try {
-            const result = await confirmationResult.confirm(code);
-            // User successfully verified
-            const user = result.user;
-            firebaseIdToken = await user.getIdToken();
-            
-            // UI Updates
-            document.getElementById('signup-otp').disabled = true;
-            document.getElementById('btn-send-otp').disabled = true;
-            btn.classList.add('hidden');
-            document.getElementById('otp-verified-badge').classList.remove('hidden');
-            alert('Phone number verified successfully!');
-        } catch (error) {
-            console.error("Verification Error", error);
-            alert('Invalid code. Please try again.');
-            btn.disabled = false;
-            btn.textContent = 'Verify Code';
-        }
-    };
-
-    // Attach Event Listeners
-    document.getElementById('btn-send-otp').addEventListener('click', sendOtp);
-    document.getElementById('btn-verify-otp').addEventListener('click', verifyOtp);
-    // --- End Firebase Integration ---
 
     // Signup form submit
     document.getElementById('signup-form').addEventListener('submit', async (e) => {
@@ -354,8 +241,8 @@
         const confirmPass = document.getElementById('signup-confirm-password').value;
         const submitBtn   = e.target.querySelector('button[type="submit"]');
 
-        if (!fullName || !email || !password || !phoneNumber || !firebaseIdToken) {
-            alert('Please fill in all required fields and verify your phone number via SMS first.');
+        if (!fullName || !email || !password || !phoneNumber) {
+            alert('Please fill in all required fields.');
             return;
         }
 
@@ -378,8 +265,7 @@
                 email: email,
                 password: password,
                 companyName: companyName,
-                phoneNumber: phoneNumber,
-                idToken: firebaseIdToken
+                phoneNumber: phoneNumber
             });
 
             alert('Registration successful! Please log in.');

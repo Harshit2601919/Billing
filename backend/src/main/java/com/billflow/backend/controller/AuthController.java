@@ -27,7 +27,7 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest request) {
         try {
-            authService.registerUser(request.username(), request.password(), request.email(), request.companyName(), request.phoneNumber(), request.idToken());
+            authService.registerUser(request.username(), request.password(), request.email(), request.companyName(), request.phoneNumber());
             return ResponseEntity.ok("User registered successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -63,7 +63,7 @@ public class AuthController {
     }
 
     // DTOs
-    public record SignupRequest(String username, String password, String email, String companyName, String phoneNumber, String idToken) {}
+    public record SignupRequest(String username, String password, String email, String companyName, String phoneNumber) {}
     public record LoginRequest(String username, String password) {}
     public record AuthResponse(String token, String type) {}
 }

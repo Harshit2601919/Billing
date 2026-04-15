@@ -2,8 +2,6 @@ package com.billflow.backend.service;
 
 import com.billflow.backend.domain.User;
 import com.billflow.backend.repository.UserRepository;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -18,20 +16,7 @@ public class AuthService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User registerUser(String username, String password, String email, String companyName, String phoneNumber, String idToken) {
-        try {
-            // Verify Firebase ID Token
-            FirebaseToken decodedToken = FirebaseAuth.getInstance().verifyIdToken(idToken);
-            String verifiedPhoneNumber = (String) decodedToken.getClaims().get("phone_number");
-            
-            // Optional: Check if the verified phone number matches the one provided
-            if (verifiedPhoneNumber == null || !verifiedPhoneNumber.contains(phoneNumber.replace(" ", ""))) {
-                throw new RuntimeException("Phone number verification failed or mismatch");
-            }
-        } catch (Exception e) {
-            throw new RuntimeException("Invalid or expired Firebase token: " + e.getMessage());
-        }
-        
+    public User registerUser(String username, String password, String email, String companyName, String phoneNumber) {
         if (userRepository.existsByUsername(username)) {
             throw new RuntimeException("Username is already taken!");
         }
