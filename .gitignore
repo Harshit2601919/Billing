@@ -1,0 +1,12 @@
+# Project Root Git Ignore
+.stitch/
+.idea/
+.vscode/
+
+# Ignore backend build artifacts (if not caught by backend/.gitignore)
+backend/target/
+backend/*.jar
+
+# Local config
+*.env
+service-account.json
